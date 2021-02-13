@@ -1,7 +1,9 @@
 .DS_Store
 Dockerfile.dev
 dev-docker-compose.yml
-*.env
+frontend.env
+backend.env
+pi.env
 mongo-init.js
 database/Dockerfile
 
