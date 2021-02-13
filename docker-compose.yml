@@ -1,0 +1,68 @@
+version: '3.4'
+
+networks:
+  database:
+    driver: bridge
+  backend:
+    driver: bridge
+  pi:
+    driver: bridge
+
+services:
+    backend:
+      ports:
+        - 3001:3001
+      build:
+        context: './backend/'
+      env_file:
+        - backend.env
+      networks:
+        - database
+        - pi
+      depends_on:
+        - database
+      healthcheck:
+          test: ["CMD", "node" , "healthcheck.js"]
+          timeout: 3s
+          retries: 20
+      restart: on-failure
+
+    database:
+      ports:
+        - 27017:27017
+      build:
+        context: './database/'
+      networks:
+        - database
+      healthcheck:
+          test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/csv --quiet
+          timeout: 5s
+          retries: 20
+      restart: on-failure
+
+    pi:
+      build:
+        context: './pi/'
+      env_file:
+        - pi.env
+      networks:
+        - pi
+      depends_on:
+        - backend
+
+    frontend:
+      ports:
+        - 3000:3000
+      build:
+        context: './frontend/'
+      env_file:
+        - frontend.env
+      networks:
+        - backend
+      depends_on:
+        - backend
+      healthcheck:
+          test: ["CMD", "node" , "healthcheck.js"]
+          timeout: 3s
+          retries: 20
+      restart: on-failure
