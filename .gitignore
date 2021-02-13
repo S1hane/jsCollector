@@ -1,6 +1,10 @@
 .DS_Store
 Dockerfile.dev
 dev-docker-compose.yml
+*.env
+mongo-init.js
+database/Dockerfile
+
 # Logs
 logs
 *.log
