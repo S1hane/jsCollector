@@ -16,9 +16,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const userSchema = {
-  _id: Schema.Types.ObjectId,
+  uuid: String,
   userName: {
     type: String,
+    unique: true,
+    index: true,
+    required: true,
     minLength: 3,
     maxLength: 16
   },
@@ -26,14 +29,15 @@ const userSchema = {
     { type: Schema.Types.ObjectId, ref: 'Sensor'}
   ]
 };
+
 const sensorSchema = {
   owner: [
     { type: Schema.Types.ObjectId, ref: 'User'}
   ],
   sensorID: {
     type: Number,
-    index: true,
     unique: true,
+    index: true,
     min: 1,
     max: 1000
   },

@@ -1,23 +1,24 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import React from 'react';
+import SingleLineChart from './components/SingleLineChart.js';
+import websocket from './modules/websocket.js';
 
 export default class App extends React.Component {
-  static async getInitialProps(ctx) {
-    const res = await fetch('https://api.github.com/repos/vercel/next.js');
-    const json = await res.json();
-    return { stars: json.stargazers_count };
-  }
+  // static async getInitialProps(ctx) {
+  //   const res = await fetch('https://api.github.com/repos/vercel/next.js');
+  //   const json = await res.json();
+  //   return { stars: json.stargazers_count };
+  // }
   render() {
 
     return (
       <div className="">
         <Head>
-          <title>Create Next App</title>
-          <link rel="icon" href="/favicon.ico" />
-          <script src="https://d3js.org/d3.v6.js" async></script>
+          <title>jsCollector</title>
+          <script src="https://d3js.org/d3.v4.js"></script>
         </Head>
-        Next stars: {this.props.stars}
+        <SingleLineChart />
       </div>
     );
 

@@ -11,8 +11,8 @@ module.exports.sendReplyToRequestor = (req, res, next, reply) => {
   });
 };
 
-module.exports.sendErrorToRequestor = (req, res, next, error) => {
+module.exports.sendError = (req, res, next, error) => {
   res.status(500);
-  res.send('ERROR:' + error);
+  res.send('ERROR:', error);
   next();
 };
