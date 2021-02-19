@@ -1,6 +1,6 @@
 # jsCollector
 
-This was my MVP project at Hack Reactor. Similar to a hack-a-thon, I had 16 hours to implement plan and implement a novel piece of software.
+This was my MVP project at Hack Reactor. Similar to a hack-a-thon, I had 16 hours to plan and implement a novel piece of software.
 
 And here is jsCollector. A tool designed to help move the community of overclocking to a more collaborative level, while solving a three big issues we have faced since I overclocked my first Pentium 75 in the mid 90s to my last Haswell-E a few years ago.
 
